@@ -329,6 +329,7 @@ export function PropertyInquiryDialog({ trigger, property, properties, isMultiPr
                     type="text"
                     id="firstName"
                     required
+                    placeholder="First name"
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
@@ -356,6 +357,7 @@ export function PropertyInquiryDialog({ trigger, property, properties, isMultiPr
                     type="text"
                     id="lastName"
                     required
+                    placeholder="Last name"
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
@@ -386,6 +388,7 @@ export function PropertyInquiryDialog({ trigger, property, properties, isMultiPr
                     type="tel"
                     id="number"
                     required
+                    placeholder="Phone number"
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
@@ -413,6 +416,7 @@ export function PropertyInquiryDialog({ trigger, property, properties, isMultiPr
                     type="email"
                     id="email"
                     required
+                    placeholder="Email address"
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",

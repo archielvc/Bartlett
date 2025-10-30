@@ -272,11 +272,12 @@ function Card({ property, index }: { property: typeof properties[0]; index: numb
 }
 
 function PortfolioList() {
-  // Show all 6 properties - 4 on mobile/tablet, 6 on desktop (3 columns)
+  // Show only first 3 properties
+  const featuredProperties = properties.slice(0, 3);
   
   return (
     <AnimatedStagger stagger={0.15} delay={0.1} className="content-stretch grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[24px] md:gap-[32px] items-stretch relative shrink-0 w-full" data-name="Portfolio List">
-      {properties.map((property, i) => (
+      {featuredProperties.map((property, i) => (
         <AnimatedStaggerItem key={i}>
           <Card property={property} index={i} />
         </AnimatedStaggerItem>

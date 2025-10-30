@@ -358,6 +358,7 @@ export default function Contact() {
                     <input
                       type="text"
                       id="firstName"
+                      placeholder="First name"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                       style={{ 
                         fontFamily: "'Figtree', sans-serif",
@@ -384,6 +385,7 @@ export default function Contact() {
                     <input
                       type="text"
                       id="lastName"
+                      placeholder="Last name"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                       style={{ 
                         fontFamily: "'Figtree', sans-serif",
@@ -413,6 +415,7 @@ export default function Contact() {
                     <input
                       type="tel"
                       id="number"
+                      placeholder="Phone number"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                       style={{ 
                         fontFamily: "'Figtree', sans-serif",
@@ -439,6 +442,7 @@ export default function Contact() {
                     <input
                       type="email"
                       id="email"
+                      placeholder="Email address"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                       style={{ 
                         fontFamily: "'Figtree', sans-serif",
@@ -748,118 +752,151 @@ export default function Contact() {
                   </>
                 )}
 
-                {/* FOR "SELL" - Show Date and Time of Day */}
+                {/* FOR "SELL" - Property Valuation Form */}
                 {selectedReason === "Sell" && (
-                  <div className="grid grid-cols-2 gap-4">
-                    {/* Preferred Date */}
-                    <div>
-                      <label 
-                        className="block text-[#1A2551] mb-2"
-                        style={{ 
-                          fontFamily: "'Figtree', sans-serif",
-                          fontSize: "0.875rem",
-                          fontWeight: 600,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.05em"
-                        }}
-                      >
-                        Preferred Date
-                      </label>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <button
-                            type="button"
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-left flex items-center justify-between hover:border-[#1A2551] focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent transition-colors"
-                            style={{ 
-                              fontFamily: "'Figtree', sans-serif",
-                              fontSize: "0.9375rem"
-                            }}
-                          >
-                            <span className={date ? "text-[#1A2551]" : "text-gray-400"}>
-                              {date ? format(date, "PPP") : "Select a date"}
-                            </span>
-                            <CalendarIcon className="h-4 w-4 text-gray-400" />
-                          </button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={date}
-                            onSelect={setDate}
-                            initialFocus
-                            disabled={(date) => {
-                              // Disable Sundays (day 0)
-                              if (date.getDay() === 0) return true;
-                              return false;
-                            }}
-                          />
-                        </PopoverContent>
-                      </Popover>
-                    </div>
-
-                    {/* Time of Day */}
-                    <div>
-                      <label 
-                        className="block text-[#1A2551] mb-2"
-                        style={{ 
-                          fontFamily: "'Figtree', sans-serif",
-                          fontSize: "0.875rem",
-                          fontWeight: 600,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.05em"
-                        }}
-                      >
-                        Time of Day
-                      </label>
-                      <Select
-                        value={timeOfDay}
-                        onValueChange={setTimeOfDay}
-                      >
-                        <SelectTrigger 
-                          className="w-full px-4 border border-gray-300 rounded-lg bg-white hover:border-[#1A2551] focus:ring-2 focus:ring-[#1A2551] transition-colors !h-auto"
+                  <div className="space-y-4">
+                    {/* Address and Postcode - Side by Side */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Address */}
+                      <div>
+                        <label 
+                          htmlFor="address"
+                          className="block text-[#1A2551] mb-2"
                           style={{ 
                             fontFamily: "'Figtree', sans-serif",
-                            fontSize: "0.9375rem",
-                            paddingTop: "0.75rem",
-                            paddingBottom: "0.75rem"
+                            fontSize: "0.875rem",
+                            fontWeight: 600,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.05em"
                           }}
                         >
-                          <SelectValue placeholder="Select time" className="text-gray-400" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="morning">Morning</SelectItem>
-                          <SelectItem value="afternoon">Afternoon</SelectItem>
-                        </SelectContent>
-                      </Select>
+                          Address
+                        </label>
+                        <input
+                          type="text"
+                          id="address"
+                          placeholder="Address"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
+                          style={{ 
+                            fontFamily: "'Figtree', sans-serif",
+                            fontSize: "0.9375rem"
+                          }}
+                        />
+                      </div>
+
+                      {/* Postcode */}
+                      <div>
+                        <label 
+                          htmlFor="postcode"
+                          className="block text-[#1A2551] mb-2"
+                          style={{ 
+                            fontFamily: "'Figtree', sans-serif",
+                            fontSize: "0.875rem",
+                            fontWeight: 600,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.05em"
+                          }}
+                        >
+                          Postcode
+                        </label>
+                        <input
+                          type="text"
+                          id="postcode"
+                          placeholder="Postcode"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
+                          style={{ 
+                            fontFamily: "'Figtree', sans-serif",
+                            fontSize: "0.9375rem"
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Property Size - Full Width */}
+                    <div>
+                      <label 
+                        htmlFor="propertySize"
+                        className="block text-[#1A2551] mb-2"
+                        style={{ 
+                          fontFamily: "'Figtree', sans-serif",
+                          fontSize: "0.875rem",
+                          fontWeight: 600,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.05em"
+                        }}
+                      >
+                        Do you know the approx. internal size of the home? (sqft)*
+                      </label>
+                      <input
+                        type="text"
+                        id="propertySize"
+                        required
+                        placeholder="Size"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
+                        style={{ 
+                          fontFamily: "'Figtree', sans-serif",
+                          fontSize: "0.9375rem"
+                        }}
+                      />
+                    </div>
+
+                    {/* Tell Us About Your Property - Full Width */}
+                    <div>
+                      <label 
+                        htmlFor="propertyDescription"
+                        className="block text-[#1A2551] mb-2"
+                        style={{ 
+                          fontFamily: "'Figtree', sans-serif",
+                          fontSize: "0.875rem",
+                          fontWeight: 600,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.05em"
+                        }}
+                      >
+                        Tell us about your property
+                      </label>
+                      <textarea
+                        id="propertyDescription"
+                        rows={4}
+                        placeholder="Tell us about your property..."
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent resize-none"
+                        style={{ 
+                          fontFamily: "'Figtree', sans-serif",
+                          fontSize: "0.9375rem"
+                        }}
+                      />
                     </div>
                   </div>
                 )}
 
-                {/* Message - Always shown */}
-                <div>
-                  <label 
-                    htmlFor="message"
-                    className="block text-[#1A2551] mb-2"
-                    style={{ 
-                      fontFamily: "'Figtree', sans-serif",
-                      fontSize: "0.875rem",
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.05em"
-                    }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent resize-none custom-scrollbar"
-                    style={{ 
-                      fontFamily: "'Figtree', sans-serif",
-                      fontSize: "0.9375rem"
-                    }}
-                  />
-                </div>
+                {/* Message - Only shown for Buy and Other, not Sell */}
+                {selectedReason !== "Sell" && (
+                  <div>
+                    <label 
+                      htmlFor="message"
+                      className="block text-[#1A2551] mb-2"
+                      style={{ 
+                        fontFamily: "'Figtree', sans-serif",
+                        fontSize: "0.875rem",
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em"
+                      }}
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={6}
+                      placeholder="Your message..."
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent resize-none custom-scrollbar"
+                      style={{ 
+                        fontFamily: "'Figtree', sans-serif",
+                        fontSize: "0.9375rem"
+                      }}
+                    />
+                  </div>
+                )}
 
                 {/* Submit Button */}
                 <button

@@ -331,7 +331,7 @@ export default function AboutUs() {
                 <BookEvaluationDialog
                   trigger={
                     <button
-                      className="bg-[#1A2551] text-white px-8 py-3 rounded-full hover:bg-[#1A2551]/90 transition-colors"
+                      className="bg-[#1A2551] text-white px-8 py-2.5 rounded-full hover:bg-[#1A2551]/90 transition-colors"
                       style={{ 
                         fontFamily: "'Figtree', sans-serif",
                         fontSize: "0.875rem",
@@ -339,7 +339,9 @@ export default function AboutUs() {
                         letterSpacing: "0.05em"
                       }}
                     >
-                      BOOK VALUATION
+                      <span className="premium-hover" data-text="BOOK VALUATION">
+                        <span>BOOK VALUATION</span>
+                      </span>
                     </button>
                   }
                 />

@@ -1,7 +1,7 @@
 
-  # B&P V3 (Copy)
+  # B&P V5
 
-  This is a code bundle for B&P V3 (Copy). The original project is available at https://www.figma.com/design/HWihOtQWnpQPxGKI3XkYbm/B-P-V3--Copy-.
+  This is a code bundle for B&P V5. The original project is available at https://www.figma.com/design/HWihOtQWnpQPxGKI3XkYbm/B-P-V5.
 
   ## Running the code
 

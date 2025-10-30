@@ -446,13 +446,7 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
               <BookEvaluationDialog
                 trigger={
                   <Button 
-                    className={`px-8 py-3 rounded-full transition-all pointer-events-auto border-2 ${
-                      isScrolled 
-                        ? 'bg-[#1A2551] text-white border-[#1A2551] hover:bg-[#1A2551]/90' 
-                        : (currentPage === 'properties' || currentPage === 'about')
-                          ? 'bg-transparent text-white border-white hover:bg-white hover:text-[#1A2551]'
-                          : 'bg-[#1A2551] text-white border-[#1A2551] hover:bg-[#1A2551]/90'
-                    }`}
+                    className="px-8 py-3 rounded-full transition-all pointer-events-auto border-2 bg-white text-[#1A2551] border-[#1A2551] hover:bg-gray-50"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
                       fontSize: "0.875rem",
@@ -479,7 +473,7 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
                 delay: baseDelay + staggerDelay * 6
               }}
               onClick={() => setIsFavoritesOpen(true)}
-              className="relative w-11 h-11 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 pointer-events-auto transition-all"
+              className="relative w-11 h-11 bg-white border-2 border-[#1A2551] rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 pointer-events-auto transition-all"
               aria-label="View saved properties"
             >
               <Heart className="w-5 h-5 text-[#1A2551]" />
@@ -500,7 +494,7 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
             {/* Hamburger Button - slides in from right when scrolled */}
             <button
               onClick={handleMenuToggle}
-              className="w-11 h-11 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 pointer-events-auto"
+              className="w-11 h-11 bg-white border-2 border-[#1A2551] rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 pointer-events-auto"
               aria-label="Open menu"
               style={{
                 transform: isScrolled && !isMenuOpen ? 'scale(1)' : 'scale(0.8)',

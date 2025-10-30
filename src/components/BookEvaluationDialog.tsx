@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { Calendar } from "./ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Button } from "./ui/button";
-import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
 
 interface BookEvaluationDialogProps {
   trigger: React.ReactNode;
@@ -13,8 +8,6 @@ interface BookEvaluationDialogProps {
 
 export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
   const [open, setOpen] = useState(false);
-  const [date, setDate] = useState<Date>();
-  const [timeOfDay, setTimeOfDay] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,11 +21,11 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>
-      <DialogContent className="max-w-2xl max-h-[90vh] p-0 gap-0 overflow-hidden" aria-describedby={undefined}>
+      <DialogContent className="max-w-4xl max-h-[90vh] p-0 gap-0 overflow-hidden" aria-describedby={undefined}>
         <div className="relative h-full max-h-[90vh] flex flex-col">
           {/* Scrollable content container */}
-          <div className="overflow-y-auto flex-1 px-6 custom-scrollbar">
-            <DialogHeader className="pt-5 pb-3">
+          <div className="overflow-y-auto flex-1 px-8 custom-scrollbar">
+            <DialogHeader className="pt-6 pb-4">
               <DialogTitle 
                 className="text-[#1A2551]"
                 style={{ 
@@ -46,9 +39,9 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
               </DialogTitle>
             </DialogHeader>
 
-            <form onSubmit={handleSubmit} className="space-y-3.5 pb-5">
+            <form onSubmit={handleSubmit} className="space-y-4 pb-6">
               {/* First Name and Last Name - Side by Side */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* First Name */}
                 <div>
                   <label 
@@ -62,11 +55,12 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                       letterSpacing: "0.05em"
                     }}
                   >
-                    First name
+                    First name*
                   </label>
                   <input
                     type="text"
                     id="firstName"
+                    placeholder="Name"
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                     style={{ 
@@ -89,11 +83,12 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                       letterSpacing: "0.05em"
                     }}
                   >
-                    Last name
+                    Last name*
                   </label>
                   <input
                     type="text"
                     id="lastName"
+                    placeholder="Last Name"
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                     style={{ 
@@ -104,12 +99,12 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                 </div>
               </div>
 
-              {/* Number and Email - Side by Side */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {/* Number */}
+              {/* Phone Number and Email - Side by Side */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Phone Number */}
                 <div>
                   <label 
-                    htmlFor="number"
+                    htmlFor="phoneNumber"
                     className="block text-[#1A2551] mb-1.5"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
@@ -119,12 +114,12 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                       letterSpacing: "0.05em"
                     }}
                   >
-                    Number
+                    Phone number
                   </label>
                   <input
                     type="tel"
-                    id="number"
-                    required
+                    id="phoneNumber"
+                    placeholder="Number"
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
@@ -146,11 +141,12 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                       letterSpacing: "0.05em"
                     }}
                   >
-                    Email
+                    Email*
                   </label>
                   <input
                     type="email"
                     id="email"
+                    placeholder="Email Address"
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
                     style={{ 
@@ -161,11 +157,12 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                 </div>
               </div>
 
-              {/* Preferred Date and Time of Day - Side by Side */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {/* Preferred Date */}
+              {/* Address and Postcode - Side by Side */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Address */}
                 <div>
                   <label 
+                    htmlFor="address"
                     className="block text-[#1A2551] mb-1.5"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
@@ -175,40 +172,24 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                       letterSpacing: "0.05em"
                     }}
                   >
-                    Preferred date
+                    Address
                   </label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <button
-                        type="button"
-                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent text-left flex items-center justify-between"
-                        style={{ 
-                          fontFamily: "'Figtree', sans-serif",
-                          fontSize: "0.9375rem"
-                        }}
-                      >
-                        <span className={date ? "text-[#1A2551]" : "text-gray-400"}>
-                          {date ? format(date, "PPP") : "Select a date"}
-                        </span>
-                        <CalendarIcon className="h-4 w-4 text-gray-400" />
-                      </button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={setDate}
-                        initialFocus
-                        disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
-                      />
-                    </PopoverContent>
-                  </Popover>
+                  <input
+                    type="text"
+                    id="address"
+                    placeholder="Address"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
+                    style={{ 
+                      fontFamily: "'Figtree', sans-serif",
+                      fontSize: "0.9375rem"
+                    }}
+                  />
                 </div>
 
-                {/* Time of Day */}
+                {/* Postcode */}
                 <div>
                   <label 
-                    htmlFor="timeOfDay"
+                    htmlFor="postcode"
                     className="block text-[#1A2551] mb-1.5"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
@@ -218,33 +199,25 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                       letterSpacing: "0.05em"
                     }}
                   >
-                    Time of Day
+                    Postcode
                   </label>
-                  <Select value={timeOfDay} onValueChange={setTimeOfDay} required>
-                    <SelectTrigger 
-                      className="w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent bg-white"
-                      style={{ 
-                        fontFamily: "'Figtree', sans-serif",
-                        fontSize: "0.9375rem",
-                        height: "46px",
-                        paddingLeft: "1rem",
-                        paddingRight: "1rem"
-                      }}
-                    >
-                      <SelectValue placeholder="Select time" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="morning">Morning</SelectItem>
-                      <SelectItem value="afternoon">Afternoon</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <input
+                    type="text"
+                    id="postcode"
+                    placeholder="Postcode"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
+                    style={{ 
+                      fontFamily: "'Figtree', sans-serif",
+                      fontSize: "0.9375rem"
+                    }}
+                  />
                 </div>
               </div>
 
-              {/* Message */}
+              {/* Property Size - Full Width */}
               <div>
                 <label 
-                  htmlFor="message"
+                  htmlFor="propertySize"
                   className="block text-[#1A2551] mb-1.5"
                   style={{ 
                     fontFamily: "'Figtree', sans-serif",
@@ -254,12 +227,40 @@ export function BookEvaluationDialog({ trigger }: BookEvaluationDialogProps) {
                     letterSpacing: "0.05em"
                   }}
                 >
-                  Message (optional)
+                  Do you know the approx. internal size of the home? (sqft)*
+                </label>
+                <input
+                  type="text"
+                  id="propertySize"
+                  placeholder="Size"
+                  required
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent"
+                  style={{ 
+                    fontFamily: "'Figtree', sans-serif",
+                    fontSize: "0.9375rem"
+                  }}
+                />
+              </div>
+
+              {/* Tell Us About Your Property - Full Width */}
+              <div>
+                <label 
+                  htmlFor="propertyDescription"
+                  className="block text-[#1A2551] mb-1.5"
+                  style={{ 
+                    fontFamily: "'Figtree', sans-serif",
+                    fontSize: "0.875rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em"
+                  }}
+                >
+                  Tell us about your property
                 </label>
                 <textarea
-                  id="message"
-                  rows={2}
-                  placeholder="Add any additional information here..."
+                  id="propertyDescription"
+                  rows={3}
+                  placeholder="Tell us about your property..."
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A2551] focus:border-transparent resize-none"
                   style={{ 
                     fontFamily: "'Figtree', sans-serif",

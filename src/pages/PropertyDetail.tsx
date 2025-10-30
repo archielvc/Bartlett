@@ -4,7 +4,7 @@ import { FooterNew } from "../components/FooterNew";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { FloorPlanViewer } from "../components/FloorPlanViewer";
 import { PropertyInquiryDialog } from "../components/PropertyInquiryDialog";
-import { Bed, Bath, Maximize, MapPin, Star, ChevronLeft, ChevronRight, ArrowLeft, Heart } from "lucide-react";
+import { Bed, Bath, Maximize, MapPin, Star, ChevronLeft, ChevronRight, ArrowLeft, Heart, X } from "lucide-react";
 import { useState, useContext } from "react";
 import { NavigationContext } from "../App";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../components/ui/dialog";
@@ -273,6 +273,19 @@ export default function PropertyDetail({ slug }: PropertyDetailProps) {
                 setSelectedImageIndex(0);
               }}
             >
+              {/* Close Button - Top Right */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setGalleryOpen(false);
+                  setSelectedImageIndex(0);
+                }}
+                className="absolute top-6 right-6 w-14 h-14 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all z-20"
+                aria-label="Close gallery"
+              >
+                <X className="w-7 h-7" />
+              </button>
+
               {/* Previous Arrow */}
               <button
                 onClick={(e) => {

@@ -1,7 +1,7 @@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "./ui/sheet";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { X, Bed, Bath, Maximize, MapPin, ArrowRight } from "lucide-react";
+import { X, Bed, Bath, Maximize, MapPin } from "lucide-react";
 import { useContext, useState } from "react";
 import { NavigationContext } from "../App";
 import { PropertyInquiryDialog } from "./PropertyInquiryDialog";
@@ -224,7 +224,7 @@ export function FavoritesSheet({ isOpen, onClose }: FavoritesSheetProps) {
               <PropertyInquiryDialog
                 trigger={
                   <button
-                    className="w-full bg-[#1A2551] text-white px-8 py-4 rounded-full hover:bg-[#1A2551]/90 transition-colors flex items-center justify-center gap-2 group"
+                    className="w-full bg-[#1A2551] text-white px-8 py-4 rounded-full hover:bg-[#1A2551]/90 transition-colors flex items-center justify-center relative"
                     style={{ 
                       fontFamily: "'Figtree', sans-serif",
                       fontSize: "0.9375rem",
@@ -232,8 +232,9 @@ export function FavoritesSheet({ isOpen, onClose }: FavoritesSheetProps) {
                       letterSpacing: "0.05em"
                     }}
                   >
-                    Inquire Now
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <span className="premium-hover" data-text="INQUIRE NOW">
+                      <span>INQUIRE NOW</span>
+                    </span>
                   </button>
                 }
                 properties={favorites}
@@ -245,7 +246,7 @@ export function FavoritesSheet({ isOpen, onClose }: FavoritesSheetProps) {
                   navigateTo('properties');
                   onClose();
                 }}
-                className="w-full bg-[#1A2551] text-white px-8 py-4 rounded-full hover:bg-[#1A2551]/90 transition-colors flex items-center justify-center gap-2 group"
+                className="w-full bg-[#1A2551] text-white px-8 py-4 rounded-full hover:bg-[#1A2551]/90 transition-colors flex items-center justify-center relative"
                 style={{ 
                   fontFamily: "'Figtree', sans-serif",
                   fontSize: "0.9375rem",
@@ -253,8 +254,9 @@ export function FavoritesSheet({ isOpen, onClose }: FavoritesSheetProps) {
                   letterSpacing: "0.05em"
                 }}
               >
-                View All Properties
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span className="premium-hover" data-text="VIEW ALL PROPERTIES">
+                  <span>VIEW ALL PROPERTIES</span>
+                </span>
               </button>
             )}
           </div>
